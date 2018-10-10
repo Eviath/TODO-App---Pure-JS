@@ -1,5 +1,5 @@
 @charset "UTF-8";
-@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url("https://fonts.googleapis.com/css?family=Roboto");
 
 body {
   background: #edf0f1;
@@ -105,9 +105,55 @@ header button svg {
   padding: 15px;
 }
 
+#completed-info {
+  width: 100%;
+  min-height: 50px;
+  float: left;
+  font-weight: 500;
+  color: #444;
+  line-height: 22px;
+
+  text-align: center;
+  font-size: 12px;
+  color: #fff;
+
+  background: #25b99a;
+  border-radius: 5px;
+  position: relative;
+  box-shadow: 0px 1px 2px rgba(44, 62, 80, 0.1);
+  margin: 25px 0 10px 0;
+  padding: 14px 100px 14px 14px;
+  word-break: break-word;
+}
+#todo-info {
+  width: 100%;
+  min-height: 50px;
+  float: left;
+  font-weight: 500;
+  color: #444;
+  line-height: 22px;
+
+  text-align: center;
+  font-size: 12px;
+  color: #fff;
+
+  background: #25b99a;
+  border-radius: 5px;
+  position: relative;
+  box-shadow: 0px 1px 2px rgba(44, 62, 80, 0.1);
+  margin: 0 0 10px 0;
+  padding: 14px 100px 14px 14px;
+  word-break: break-word;
+}
+
+hr {
+  opacity: 0.5;
+  width: 50%;
+  margin: 0 auto;
+}
+
 ul.todo {
   width: 100%;
-  float: left;
 }
 
 ul.todo li {
@@ -130,11 +176,12 @@ ul.todo li {
 
 ul.todo li:last-of-type {
   margin: 0;
+  margin-bottom: 25px;
 }
+
 ul.todo li {
   display: flex;
   align-items: center;
-  flex-direction: row;
   justify-content: space-between;
 }
 
@@ -155,7 +202,7 @@ ul.todo li .buttons i {
 
 ul.todo#completed {
   position: relative;
-  padding: 60px 0 0 0;
+  padding: 0 0 0 0;
 
   li .buttons .complete i {
     color: #25b99a;
@@ -164,35 +211,4 @@ ul.todo#completed {
       color: #444;
     }
   }
-}
-
-ul.todo#completed:before {
-  content: "";
-  width: 150px;
-  height: 1px;
-  background: #d8e5e0;
-
-  position: absolute;
-  top: 30px;
-  left: 50%;
-
-  margin: 0 0 0 -75px;
-}
-
-ul.todo#todo:empty:after {
-  content: "You have nothing to-do!";
-  margin: 15px 0 0 0;
-}
-
-ul.todo#completed:empty:after {
-  content: "You have yet to complete any tasks.";
-}
-
-ul.todo#todo:after,
-ul.todo#completed:after {
-  width: 100%;
-  display: block;
-  text-align: center;
-  font-size: 12px;
-  color: #aaa;
 }

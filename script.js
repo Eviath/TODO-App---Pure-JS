@@ -5,55 +5,90 @@ var data = localStorage.getItem("todoList")
       completed: []
     };
 
-
-
 const removeFA = '<i class="far fa-trash-alt"></i>';
 const completeFA = '<i class="fas fa-check"></i>';
 
 renderTodoList();
 // user clicked on the add button
 
-
 // if there is any text on the item field, add that text to the todo list.
 document.getElementById("add").addEventListener("click", function() {
   var value = document.getElementById("item").value;
 
   if (value) {
-     addItem(value);
+    addItem(value);
   }
 });
 
-document.getElementById('item').addEventListener('keydown', function(e) {
+// Detect keydown on input field, and add item on ENTER press
+document.getElementById("item").addEventListener("keydown", function(e) {
   var value = this.value;
-if (e.code === 'Enter' && value) {
-  addItem(value);
-}
+  if (e.code === "Enter" && value) {
+    addItem(value);
+  }
 });
 
+// add item to data localstorage
 function addItem(value) {
-    addItemToDom(value);
-    document.getElementById("item").value = "";
-    data.todo.push(value);
-    dataObjectUpdated();
+  addItemToDom(value);
+  document.getElementById("item").value = "";
+  data.todo.push(value);
+  dataObjectUpdated();
 }
 
-
-
+// render todolist on DOM
 function renderTodoList() {
+  //   completed items info counter hide on app render
+  const ic = data.completed.length;
+  const completedInfo = document.getElementById("completed-info");
+  const hr = document.getElementById("hr-todo");
+
+  //   if object data.completed is empty, hide completed-info div and hr
+  if (ic === 0) {
+    hr.style.display = "none";
+    completedInfo.style.display = "none";
+  }
+
+  //   if there are any objects
   if (!data.todo.length && !data.completed.length) return;
 
+  //   return objects to DOM if there are any items todo
   for (var i = 0; i < data.todo.length; i++) {
     var value = data.todo[i];
     addItemToDom(value);
   }
 
+  //   return objects to DOM if there are any items completed
   for (var j = 0; j < data.completed.length; j++) {
     var value = data.completed[i];
     addItemToDom(value, true);
   }
 }
 
+// on any action update data object
 function dataObjectUpdated() {
+  //   todo info counter
+  const i = data.todo.length;
+  const todoInfo = document.getElementById("todo-info");
+  if (i === 0) {
+    todoInfo.innerText = "You have nothing to do!";
+  } else {
+    todoInfo.innerText = `You have ${i} items to do!`;
+  }
+
+  //   completed info counter
+  const ic = data.completed.length;
+  const completedInfo = document.getElementById("completed-info");
+  const hr = document.getElementById("hr-todo");
+  if (ic === 0) {
+    completedInfo.style.display = "none";
+    hr.style.display = "none";
+  } else {
+    hr.style.display = "block";
+    completedInfo.style.display = "block";
+    completedInfo.innerText = `You have completed ${ic} tasks!`;
+  }
+
   localStorage.setItem("todoList", JSON.stringify(data));
 }
 
