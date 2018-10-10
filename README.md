@@ -1,4 +1,4 @@
 # TODO-App---Pure-JS
 
 
-TDO Application. Made with pure Javascript.
+TODO Application. Made with pure Javascript.
